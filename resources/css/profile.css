@@ -1,0 +1,22 @@
+.info-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Aligns the boxes to the center */
+    gap: 10px;
+}
+
+.box {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* Centers the content inside each box */
+}
+
+input {
+    width: 200px; /* Set a width for the input boxes */
+    text-align: center; /* Centers the text inside the input */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
