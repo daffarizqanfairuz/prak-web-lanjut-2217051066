@@ -26,11 +26,11 @@
         </div>
         <div class="card-content">
             <div class="bg-gray-100 p-2 mb-2 text-center rounded-lg">
-            <p class=><?= $nama ?></p>
+            <p>Nama: {{ $nama }}</p>
             <p class="mt-2 mb-2" ></p>
-            <p class=><?= $npm ?></p>
+            <p>NPM: {{ $npm }}</p>
             <p class="mt-2 mb-2"></p>
-            <p class=> <?$kelas ?? 'Kelas tidak ditemukan'?>Kelas A</p>
+            <p>Kelas: {{ $nama_kelas ?? 'Kelas tidak ditemukan'}}</p>
             </div>
         </div>
     </div>

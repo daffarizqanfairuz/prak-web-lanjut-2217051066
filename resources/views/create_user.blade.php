@@ -6,19 +6,49 @@
     <title>Form Laravel</title>
 </head>
 <body>
+    <h1>Formulir Pendaftaran</h1>
+
+
+    {{-- Formulir --}}
     <form action="{{ route('user.store') }}" method="POST">
         @csrf
-        <label for="nama">Nama:</label>
-        <input type="text" id="nama" name="nama">
+
+        {{-- Input nama --}}
+        <label for="nama">Nama:</label><br>
+        <input type="text" id="nama" name="nama" value="{{ old('nama') }}">
+        @error('nama')
+            <div style="color: red;">{{ $message }}</div>
+        @enderror
         <br><br>
-        <label for="npm">NPM:</label>
-        <input type="text" id="npm" name="npm">
+
+        {{-- Input NPM --}}
+        <label for="npm">NPM:</label><br>
+        <input type="text" id="npm" name="npm" value="{{ old('npm') }}">
+        @error('npm')
+            <div style="color: red;">{{ $message }}</div>
+        @enderror
         <br><br>
-        <label for="kelas">Kelas:</label>
-        <input type="text" id="kelas" name="kelas">
+
+        {{-- Dropdown kelas --}}
+        <label for="kelas_id">Kelas:</label><br>
+        <select id="kelas_id" name="kelas_id">
+            <option value="">-- Pilih Kelas --</option>
+            @foreach ($kelas as $kelasItem)
+                <option value="{{ $kelasItem->id }}" {{ old('kelas_id') == $kelasItem->id ? 'selected' : '' }}>
+                    {{ $kelasItem->nama_kelas }}
+                </option>
+            @endforeach
+        </select>
+        @error('kelas_id')
+            <div style="color: red;">{{ $message }}</div>
+        @enderror
         <br><br>
+
+        {{-- Tombol submit --}}
         <button type="submit">Submit</button>
     </form>
 </body>
 </html>
+
+
 
