@@ -22,15 +22,16 @@
     </div>
     <div class="card">
         <div class="card-image">
-        <img src="{{ asset('assets/img/download.jpeg') }}" alt="Deskripsi Gambar" class="rounded-full">
+        <img src="{{ $user->foto ? asset($user->foto) : asset('public/img/download.jpeg')  }}" alt="Profile Picture" class="rounded-full">
+
         </div>
         <div class="card-content">
             <div class="bg-gray-100 p-2 mb-2 text-center rounded-lg">
-            <p>Nama: {{ $nama }}</p>
+            <p>Nama: {{ $user->nama }}</p>
             <p class="mt-2 mb-2" ></p>
-            <p>NPM: {{ $npm }}</p>
+            <p>NPM: {{ $user->npm }}</p>
             <p class="mt-2 mb-2"></p>
-            <p>Kelas: {{ $nama_kelas ?? 'Kelas tidak ditemukan'}}</p>
+            <p>Kelas: {{ $user->kelas->nama_kelas ?? 'Kelas tidak ditemukan'}}</p>
             </div>
         </div>
     </div>

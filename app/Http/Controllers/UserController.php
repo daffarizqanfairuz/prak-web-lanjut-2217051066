@@ -27,12 +27,23 @@ class UserController extends Controller
         return view('list_user', $data);
     }
 
-    public function profile($nama = "", $kelas = "", $npm = ""){
+    public function profile($id){
+        $user = UserModel::with('kelas')->findOrFail($id);
+
+        return view('profile', [
+            'title' => 'Profile',
+            'user' => $user,
+        ]);
+    }
+
+    public function show($id){
+        $user = $this->userModel->getUsers($id);
+
         $data = [
-            'nama' => $nama,
-            'kelas' => $kelas,
-            'npm' => $npm,
+            'title' => 'Profile',
+            'user' => $user,
         ];
+
         return view('profile', $data);
     }
 
@@ -55,16 +66,23 @@ class UserController extends Controller
             'nama' => 'required|string|max:255',
             'npm' => 'required|string|max:255',
             'kelas_id' => 'required|exists:kelas,id',
-        ], [
-            'nama.required' => 'Nama wajib diisi.',
-            'npm.required' => 'NPM wajib diisi.',
-            'kelas_id.exists' => 'Kelas yang dipilih tidak valid.',
+            'foto' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
+
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $fotoPath = $foto->move('upload/img', uniqid() . '.' . $foto->getClientOriginalExtension());
+        } else {
+            $fotoPath = null;
+        }
         
+        $user = UserModel::create([
+            'nama' => $validatedData['nama'],
+            'npm' => $validatedData['npm'],
+            'kelas_id' => $validatedData['kelas_id'],
+            'foto' => $fotoPath
+        ]);        
 
-        $this->userModel->create($validatedData);
-
-
-        return redirect()->to('/user');
+        return redirect()->route('user.profile', ['id' => $user->id]);
     }
 }
