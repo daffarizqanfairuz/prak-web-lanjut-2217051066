@@ -21,6 +21,11 @@ Route::get('/user', [UserController::class, 'index'])->name('user.index');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::get('/show/{id}', [UserController::class, 'show'])->name('users.show');
 Route::get('/user/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
+Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
+Route::get('/user/list', [UserController::class, 'index'])->name('user.list');
+
 
 Route::get('/', function () {
     return view('welcome');
