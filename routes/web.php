@@ -16,9 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/user/create', [UserController::class, 'create']);
-Route::get('/user/profile/{nama?}/{kelas?}/{npm?}', [UserController::class, 'profile']);
 Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
 Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::get('/show/{id}', [UserController::class, 'show'])->name('users.show');
+Route::get('/user/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
 
 Route::get('/', function () {
     return view('welcome');

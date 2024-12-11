@@ -3,7 +3,7 @@
 @section('content')
 
     {{-- Formulir --}}
-    <form action="{{ route('user.store') }}" method="POST">
+    <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         {{-- Input nama --}}
@@ -36,6 +36,10 @@
             <div style="color: red;">{{ $message }}</div>
         @enderror
         <br><br>
+
+        {{-- Input foto --}}
+        <label for="foto">Foto:</label><br>
+        <input type="file" id="foto" name="foto"><br><br>
 
         {{-- Tombol submit --}}
         <button type="submit">Submit</button>

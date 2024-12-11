@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section ('content')
 
+<a href="{{ route('users.create') }}" class="btn btn-primary mb-3">Tambah Pengguna Baru</a>
 <table>
     <thead>
         <tr>
@@ -20,7 +21,7 @@
             <td><?= $user['nama'] ?></td>
             <td><?= $user['npm'] ?></td>
             <td><?= $user['nama_kelas'] ?></td>
-            <td></td>
+            <td><a href="{{ route('user.profile', $user->id) }}" class ="text-blue-500 hover:text-blue-700 font-semibold">Lihat</a></td>
         </tr>
     <?php
     }
